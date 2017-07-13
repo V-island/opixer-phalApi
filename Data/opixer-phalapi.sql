@@ -1,4 +1,4 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
@@ -26,7 +26,7 @@ CREATE TABLE `opixer_bookmark` (
   `title` varchar(255) NOT NULL COMMENT '书签名',
   `color` varchar(255) DEFAULT NULL COMMENT '书签背景色块',
   `icon` varchar(255) DEFAULT NULL COMMENT '书签图标',
-  `url` varchar(255) NOT NULL COMMENT '书签地址',
+  `url` varchar(255) DEFAULT NULL COMMENT '书签地址',
   `url_name` varchar(255) DEFAULT NULL COMMENT '书签地址展示名',
   `image_id` int(11) DEFAULT NULL COMMENT '书签背景图ID',
   `image_url` varchar(255) DEFAULT NULL COMMENT '书签背景图URL',
@@ -38,4 +38,5 @@ CREATE TABLE `opixer_bookmark` (
   `weight` int(11) NOT NULL COMMENT '书签权重',
   `updata` int(10) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
