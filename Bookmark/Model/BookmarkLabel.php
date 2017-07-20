@@ -16,4 +16,15 @@ class Model_BookmarkLabel extends PhalApi_Model_NotORM {
     protected function getTableName($id) {
         return 'bookmark_label';
     }
+    public function getListItems($orderName, $orderType, $page, $perpage) {
+        return $this->getORM()
+            ->select('*')
+            ->order($orderName.' '.$orderType)
+            ->limit(($page - 1) * $perpage, $perpage)
+            ->fetchAll();
+    }
+    public function getListTotal() {
+        $total = $this->getORM()->count('id');
+        return intval($total);
+    }
 }
