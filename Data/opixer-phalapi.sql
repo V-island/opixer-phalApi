@@ -1,4 +1,4 @@
-﻿/*
+/*
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100121
 File Encoding         : 65001
 
-Date: 2017-07-13 18:31:53
+Date: 2017-07-20 18:26:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,26 +33,48 @@ CREATE TABLE `opixer_bookmark` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 -- ----------------------------
--- Table structure for opixer_bookmark_link
+-- Table structure for opixer_bookmark_label
 -- ----------------------------
-DROP TABLE IF EXISTS `opixer_bookmark_link`;
-CREATE TABLE `opixer_bookmark_link` (
+DROP TABLE IF EXISTS `opixer_bookmark_label`;
+CREATE TABLE `opixer_bookmark_label` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标签ID',
-  `name` varchar(255) DEFAULT NULL COMMENT '标签名',
+  `name` varchar(255) NOT NULL COMMENT '标签名',
+  `description` varchar(255) DEFAULT NULL COMMENT '标签备注',
+  `updata` int(10) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
 -- ----------------------------
--- Table structure for opixer_bookmark_link_group
+-- Table structure for opixer_bookmark_label_rule
 -- ----------------------------
-DROP TABLE IF EXISTS `opixer_bookmark_link_group`;
-CREATE TABLE `opixer_bookmark_link_group` (
+DROP TABLE IF EXISTS `opixer_bookmark_label_rule`;
+CREATE TABLE `opixer_bookmark_label_rule` (
   `id` int(11) NOT NULL,
   `bid` int(11) NOT NULL COMMENT '书签ID',
   `lid` int(11) NOT NULL COMMENT '标签ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for opixer_bookmark_sort_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `opixer_bookmark_sort_rule`;
+CREATE TABLE `opixer_bookmark_sort_rule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `sid` int(11) NOT NULL COMMENT '分类ID',
+  `bid` int(11) NOT NULL COMMENT '书签ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for opixer_bookmerk_sort
+-- ----------------------------
+DROP TABLE IF EXISTS `opixer_bookmerk_sort`;
+CREATE TABLE `opixer_bookmerk_sort` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '分类ID',
+  `name` varchar(255) NOT NULL COMMENT '分类名',
+  `description` varchar(255) DEFAULT NULL COMMENT '分类备注',
+  `updata` int(10) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

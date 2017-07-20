@@ -32,7 +32,6 @@ return array(
                 array('db' => 'opixer'),
             ),
         ),
-
         /**
         'demo' => array(                                                //表名
             'prefix' => 'tbl_',                                         //表名前缀

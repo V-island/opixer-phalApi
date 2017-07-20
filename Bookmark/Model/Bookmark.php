@@ -17,9 +17,9 @@ CREATE TABLE `opixer_bookmark` (
 
  */
 
-class Model_Admin extends PhalApi_Model_NotORM {
+class Model_Bookmark extends PhalApi_Model_NotORM {
 
     protected function getTableName($id) {
-        return 'opixer_bookmark';
+        return 'bookmark';
     }
 }
