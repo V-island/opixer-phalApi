@@ -34,10 +34,9 @@ class Domain_Bookmark {
     }
     public function getItemsList($id, $type, $orderName, $orderType, $page, $perpage) {
         $rs = array('items' => array(), 'total' => 0);
-        $model = new Model_Bookmark();
-        
+        $model = $type === 'sort' ? new Model_BookmarkSortRule() : new Model_BookmarkLabelRule();
         $items = $model->getItems($id, $orderName, $orderType, $page, $perpage);
-        $total = $model->getItemsTotal($id);
+        $total = $model->getTotal($id);
         $rs['items'] = $items;
         $rs['total'] = $total;
         return $rs;

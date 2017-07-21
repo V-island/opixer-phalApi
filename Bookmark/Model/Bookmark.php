@@ -17,29 +17,9 @@ CREATE TABLE `opixer_bookmark` (
 
  */
 
-// select * from opixer_bookmark as u left join opixer_bookmark_sort_rule a on u.id = a.bid where a.sid = 2 
 class Model_Bookmark extends PhalApi_Model_NotORM {
 
     protected function getTableName($id) {
         return 'bookmark';
-    }
-    public function getItems($id, $orderType, $page, $perpage) {
-        return $this->getORM()
-            ->'opixer_bookmark_sort_rule'
-            ->select('*')
-            ->where('sid', $id)
-            ->order($orderName.' '.$orderType)
-            ->limit(($page - 1) * $perpage, $perpage)
-            ->fetchAll();
-    }
-    public function getItemsTotal($id) {
-        $total = $this->getORM()
-            ->'opixer_bookmark_sort_rule'
-            ->select('*')
-            ->where('sid', $id)
-            ->order($orderName.' '.$orderType)
-            ->limit(($page - 1) * $perpage, $perpage)
-            ->count('id');
-        return intval($total);
     }
 }
