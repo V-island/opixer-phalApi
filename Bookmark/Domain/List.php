@@ -4,7 +4,7 @@ class Domain_List {
 
     public function getList($type, $orderName, $orderType, $page, $perpage) {
         $rs = array('items' => array(), 'total' => 0);
-        $model = ($type === 'sort') ? new Model_BookmarkSortRule() : new Model_BookmarkLabelRule();
+        $model = ($type === 'sort') ? new Model_BookmarkSort() : new Model_BookmarkLabel();
         $items = $model->getListItems($orderName, $orderType, $page, $perpage);
         $total = $model->getListTotal();
         $rs['items'] = $items;
