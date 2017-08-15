@@ -26,21 +26,6 @@ class Api_Index extends PhalApi_Api
                     'max'       => 1024 * 1024,
                     'desc'      => 'JSON数据'
                     )
-            ),
-            'getList' => array(
-                'type'      => array('name' => 'type', 'require' => true, 'desc' => '类型'),
-                'orderName' => array('name' => 'orderName', 'default' => 'id', 'desc' => '排序字段'),
-                'orderType' => array('name' => 'orderType', 'default' => 'desc', 'desc' => '排序方式'),
-                'page'      => array('name' => 'page', 'type' => 'int', 'min' => 1, 'default' => 1, 'desc' => '第几页'),
-                'perpage'   => array('name' => 'perpage', 'type' => 'int', 'min' => 1, 'max' => 20, 'default' => 10, 'desc' => '分页数量')
-            ),
-            'getItemsList' => array(
-                'id'        => array('name' => 'id', 'require' => true, 'desc' => '目录ID'),
-                'type'      => array('name' => 'type', 'require' => true, 'desc' => '类型'),
-                'orderName' => array('name' => 'orderName', 'default' => 'id', 'desc' => '排序字段'),
-                'orderType' => array('name' => 'orderType', 'default' => 'desc', 'desc' => '排序方式'),
-                'page'      => array('name' => 'page', 'type' => 'int', 'min' => 1, 'default' => 1, 'desc' => '第几页'),
-                'perpage'   => array('name' => 'perpage', 'type' => 'int', 'min' => 1, 'max' => 20, 'default' => 10, 'desc' => '分页数量')
             )
         );
     }
@@ -127,46 +112,6 @@ class Api_Index extends PhalApi_Api
             $rs['code'] = 1;
             $rs['msg']  = '上传完成';
         }
-        return $rs;
-    }
-
-    /**
-     * 获取分类/标签目录列表
-     * @desc 根据状态筛选列表数据，支持分页
-     * @return array    items   列表数据
-     * @return int      total   总数量
-     * @return int      page    当前第几页
-     * @return int      perpage 每页数量
-     */
-    public function getList()
-    {
-        $rs = array();
-        $domain = new Domain_Bookmark();
-        $list = $domain->getList($this->type, $this->orderName, $this->orderType, $this->page, $this->perpage);
-        $rs['items'] = $list['items'];
-        $rs['total'] = $list['total'];
-        $rs['page'] = $this->page;
-        $rs['perpage'] = $this->perpage;
-        return $rs;
-    }
-
-    /**
-     * 获取书签列表
-     * @desc 根据状态筛选列表数据，支持分页
-     * @return array    items   列表数据
-     * @return int      total   总数量
-     * @return int      page    当前第几页
-     * @return int      perpage 每页数量
-     */
-    public function getItemsList()
-    {
-        $rs = array();
-        $domain = new Domain_Bookmark();
-        $list = $domain->getItemsList($this->id, $this->type, $this->orderName, $this->orderType, $this->page, $this->perpage);
-        $rs['items'] = $list['items'];
-        $rs['total'] = $list['total'];
-        $rs['page'] = $this->page;
-        $rs['perpage'] = $this->perpage;
         return $rs;
     }
 }
